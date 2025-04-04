@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
 
 export default function LoadingScreen({ navigation }) {
   useEffect(() => {
@@ -10,7 +10,12 @@ export default function LoadingScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Loading...</Text>
+      <Image 
+        source={require('../assets/logo_provisorio.png')} 
+        style={styles.logo}
+      />
+      <ActivityIndicator size="large" color="#fff" style={styles.spinner} />
+      <Text style={styles.text}>Carregando assistente...</Text>
     </View>
   );
 }
@@ -18,11 +23,21 @@ export default function LoadingScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#333', // Cor de fundo escura
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  logo: {
+    width: 150, 
+    height: 150,
+    marginBottom: 20, 
+  },
+  spinner: {
+    marginBottom: 20, 
   },
   text: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#fff', 
   },
 });
