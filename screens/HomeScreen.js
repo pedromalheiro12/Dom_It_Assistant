@@ -1,31 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>It Assistant</Text>
 
-      <Image
-        source={require('../assets/avatar.png')} 
-        style={styles.avatar}
-        resizeMode="contain"
-      />
+      <Image source={require('../assets/avatar.png')} style={styles.avatar} />
 
       <View style={styles.iconRow}>
-        <TouchableOpacity style={styles.iconButton}>
-          <MaterialIcons name="chat-bubble" size={36} color="white" />
+        <TouchableOpacity>
+          <Ionicons name="chatbubble-ellipses-outline" size={40} color="#fff" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
-          <Ionicons name="mic" size={36} color="white" />
+        <TouchableOpacity>
+          <Ionicons name="mic-outline" size={40} color="#fff" />
         </TouchableOpacity>
       </View>
 
-      <View style={styles.bottomIcons}>
-        <Ionicons name="arrow-back" size={24} color="white" />
-        <Ionicons name="settings" size={24} color="white" />
-      </View>
+      <TouchableOpacity
+        style={styles.settingsButton}
+        onPress={() => navigation.navigate('Settings')}
+      >
+        <Ionicons name="settings-outline" size={30} color="#fff" />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -33,41 +31,32 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#7EC8E3', // azul claro
+    backgroundColor: '#78C8E3',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 60,
-    paddingBottom: 20,
   },
   title: {
+    position: 'absolute',
+    top: 50,
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-    marginBottom: 30,
+    color: '#fff',
   },
   avatar: {
     width: 150,
     height: 150,
-    marginBottom: 50,
+    resizeMode: 'contain',
+    marginVertical: 40,
   },
   iconRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '60%',
-    marginBottom: 80,
+    marginTop: 20,
   },
-  iconButton: {
-    padding: 10,
-  },
-  bottomIcons: {
+  settingsButton: {
     position: 'absolute',
-    bottom: 20,
-    width: '90%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    bottom: 30,
+    right: 20,
   },
 });
